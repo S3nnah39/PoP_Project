@@ -7,6 +7,7 @@ Implementation of a parser for Python language, using Context-free Grammar (CFG)
 * Akhil Mulakala
 * Andy Solovyov
 * Tasha Ogoti
+* Ur mom
 
 
 ## Requirements for your parser
