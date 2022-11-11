@@ -24,24 +24,24 @@ TBD
 
 ## Expected Features
 ### Deliverable #1
-• Arithmetic operators (+, -, *, /, %,) 
-• Assignment operators (=, +=, -=, *=, /=) 
-• Variable definitions 
+\t * Arithmetic operators (+, -, *, /, %,) 
+\t * Assignment operators (=, +=, -=, *=, /=) 
+\t * Variable definitions 
  
 ### Deliverable #2 
-• if/else blocks 
-• Conditional statements (<, <=, >, >=, ==, !=, 
+\t * if/else blocks 
+\t * Conditional statements (<, <=, >, >=, ==, !=, 
 and, or, not) 
 
 ### Deliverable #3 
-• while and for Loops 
-• Support for comments 
+\t * while and for Loops 
+\t * Support for comments 
 
 ### Deliverable #4 
-• Support for function implementations 
-• Function calls 
+\t * Support for function implementations 
+\t * Function calls 
 
 ### BONUS
-• Visualization of your parse tree, and 
+\t * Visualization of your parse tree, and 
 outputting in image format (.png, .jpeg, .jpg, 
 .pdf). 
