@@ -1,19 +1,47 @@
-o Explain your project. 
+## Project Explanation. 
 Implementation of a parser for Python language, using Context-free Grammar (CFG) or BNF with ANTLR (or something equivalent to ANTLR, for example, bison, yacc, lex, etc.). 
 
-o Include your team members. 
-Malek Necibi
-Romelo Seals
-Akhil Mulakala
-Andy Solovyov
-Tasha Ogoti
+## Team members. 
+..* Malek Necibi
+..* Romelo Seals
+..* Akhil Mulakala
+..* Andy Solovyov
+..* Tasha Ogoti
 
 
-o Include the requirements that is required for your parser. For example, what are the 
-steps for the setup, what environment is needed? 
+## Requirements for your parser
+* Steps for the setup
+  TBD
+* Environment is Needed? 
+  TBD
+
+## How to use/run the parser. 
+TBD
+
+## Optional: Demo video 
+TBD
 
 
-o Write a “How to use/run” the parser. 
+## Expected Features
+### Deliverable #1
+• Arithmetic operators (+, -, *, /, %,) 
+• Assignment operators (=, +=, -=, *=, /=) 
+• Variable definitions 
+ 
+### Deliverable #2 
+• if/else blocks 
+• Conditional statements (<, <=, >, >=, ==, !=, 
+and, or, not) 
 
+### Deliverable #3 
+• while and for Loops 
+• Support for comments 
 
-o Optional: Demo video 
+### Deliverable #4 
+• Support for function implementations 
+• Function calls 
+
+### BONUS
+• Visualization of your parse tree, and 
+outputting in image format (.png, .jpeg, .jpg, 
+.pdf). 
