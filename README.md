@@ -2,11 +2,11 @@
 Implementation of a parser for Python language, using Context-free Grammar (CFG) or BNF with ANTLR (or something equivalent to ANTLR, for example, bison, yacc, lex, etc.). 
 
 ## Team members. 
-..* Malek Necibi
-..* Romelo Seals
-..* Akhil Mulakala
-..* Andy Solovyov
-..* Tasha Ogoti
+* Malek Necibi
+* Romelo Seals
+* Akhil Mulakala
+* Andy Solovyov
+* Tasha Ogoti
 
 
 ## Requirements for your parser
