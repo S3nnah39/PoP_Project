@@ -1,5 +1,7 @@
-antlr*-complete.jar
-/__pycache__
+antlr*.jar
+antlr4module
+*.interp
+
 .idea/
 __pycache__/
 *.tokens
