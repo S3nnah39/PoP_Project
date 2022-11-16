@@ -1,21 +1,64 @@
 grammar Expr;
 
-prog:   ass EOF;
+prog:   ((expr | ass | ITE)'\n')*;
 ass:    var op expr;
 expr:   expr ('/'|'%') expr
     |    expr ('+'|'-') expr
     |    INT
     |   STRING
+    |   LITERAL
     |    '(' expr ')'
     |   var;
-op: '='
+
+op:     '='
     |   '+='
     |   '-='
-    |   '='
+    |   '*='
     |   '/=';
-TAG : [a-zA-Z]+;
+
+CHAR: [a-z] | [A-Z];
 INT:    [0-9]+;
-STRING: '"' (TAG | [0-9])* '"';
-VARSTRING: TAG (TAG | [0-9])*;
-var: TAG (INT | VARSTRING)*;
-NEWLINE: '\r'? '\n' ' '* -> skip;
+LITERAL: '"' STRING '"';
+STRING: (CHAR|INT) (CHAR | INT)*;
+var: STRING;
+
+ITE:    ifstate elifstate* | ifstate elifstate* elsestate;
+
+relation:   '=='|
+            '>='|
+            '<='|
+            '<'|
+            '>';
+
+atomiccond: (expr | expr relation expr) |
+            ('not' expr | 'not(' expr relation expr ')' );
+
+cond:  atomiccond (('and' | 'or') atomiccond)*;
+
+ifstate:    'if ' cond ':\n' prog;
+
+elifstate:  'elif' cond ':\n' prog;
+
+elsestate: 'else' cond ':\n' prog;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
