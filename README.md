@@ -11,8 +11,13 @@ Implementation of a parser for Python language, using Context-free Grammar (CFG)
 
 
 ## Requirements for your parser
+* Requirements for the setup
+1. Apache Maven 3.8.4
+2. JavaSE 17
+
 * Steps for the setup
   TBD
+  
 * Environment is Needed? 
   TBD
 
