@@ -1,65 +1,42 @@
 grammar Expr;
 
+prog:   ((expr | ass | ite)('\n')*('\t')*)*;
+ass:    var op expr;
+expr:   expr ('/'|'%') expr
+    |    expr ('+'|'-') expr
+    |    INT
+    |   STRING
+    |   LITERAL
+    |    '(' expr ')'
+    |   var;
 
-// *** PARSER *** //
+op:     '='
+    |   '+='
+    |   '-='
+    |   '*='
+    |   '/=';
 
-prog: (statement)+ EOF;
+CHAR: [a-z] | [A-Z];
+INT:    [0-9]+;
+LITERAL: '"' STRING '"';
+STRING: (CHAR|INT) (CHAR | INT)*;
+var: STRING;
 
-statement: expr
-         | VAR num_assign num_expr
-         | VAR ASSIGN expr
-         ;
+ite:    ifstate elifstate* | ifstate elifstate* elsestate;
 
-expr: '(' expr ')'
-    | STRING
-    | num_expr
-    ;
+relation:   '=='|
+            '>='|
+            '<='|
+            '<'|
+            '>';
 
-// PEMDAS
-num_expr: '(' num_expr ')'
-        | num_expr (MUL|DIV|MOD) num_expr
-        | num_expr (ADD|SUB) num_expr
-        | num
-        ;
-num_assign: SUB_ASSIGN
-          | MUL_ASSIGN
-          | DIV_ASSIGN
-          | MOD_ASSIGN
-          ;
+atomiccond: (expr | expr relation expr) |
+            ('not' expr | 'not(' expr relation expr ')' );
 
-num: (INT|FLOAT);
+cond:  atomiccond (('and' | 'or') atomiccond)*;
 
+ifstate:    'if ' cond ':\n\t' ((expr | ass | ite)('\n')('\t'))*;
 
+elifstate:  'elif' cond ':\n\t' ((expr | ass | ite)('\n')('\t'))*;
 
-// *** LEXER *** //
-
-// Arithmetic Operators
-MUL : '*' ;
-DIV : '/' ;
-MOD : '%' ;
-ADD : '+' ;
-SUB : '-' ;
-
-// Assignment Operators
-ASSIGN     : '='  ;
-MUL_ASSIGN : '*=' ;
-DIV_ASSIGN : '/=' ;
-MOD_ASSIGN : '%=' ;
-ADD_ASSIGN : '+=' ;
-SUB_ASSIGN : '-=' ;
-
-// Variable definitions
-VAR : [_a-zA-Z][_a-zA-Z0-9]* ;
-
-
-// Miscellaneous
-WS : [\r\n\t ]+ -> skip;
-NEWLINE : '\r'? '\n' ;
-
-INT : [0-9]+ ;
-FLOAT : '-'? INT '.' INT ;
-
-STRING: '"' ~["\r\n]* '"';
-
-PAREN_OPEN: '(';
-PAREN_CLOSE: ')';
+elsestate: 'else' cond ':\n\t' ((expr | ass | ite)('\n')('\t'))*;
