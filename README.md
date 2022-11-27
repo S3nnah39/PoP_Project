@@ -22,10 +22,10 @@ Implementation of a parser for Python language, using Context-free Grammar (CFG)
   TBD
 
 ## How to use/run the parser. 
-TBD
+Refer to ANTLR documentation for instructions on running parser for g4 file. The g4 file is Expr.g4.
 
 ## Optional: Demo video 
-TBD
+https://www.youtube.com/watch?v=vfc42Pb5RA8
 
 
 ## Expected Features
