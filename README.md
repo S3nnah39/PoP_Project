@@ -24,8 +24,8 @@ Follow intructions for antlr4 install here
 5. Run antlr4 SimplePython.g4 in this directory
 6. Run javac *.java to compile into java class files
 7. To parse and print tree on stdout, run: grun SimplePython startRule -tree <file>
-        * To visualize in a gui, run: grun SimplePython startRule -gui <file>
-        * Replace <file> with the test_file.py or alternative to parse a file
+       - To visualize in a gui, run: grun SimplePython startRule -gui <file>
+       - Replace <file> with the test_file.py or alternative to parse a file
  8. Omit <file> to input on stdin, and enter control + D to end the input
 
 ## Optional: Demo video 
