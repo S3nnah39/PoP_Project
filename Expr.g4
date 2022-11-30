@@ -26,7 +26,8 @@ num_assign: SUB_ASSIGN
           | DIV_ASSIGN
           | MOD_ASSIGN
           ;
-
+ifs: 'if' statement ':' ('elif' statement ':' num_expr)* ('else:' num_expr)
+    
 num: (INT|FLOAT);
 
 
