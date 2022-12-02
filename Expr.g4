@@ -9,7 +9,8 @@ expr:   expr ('/'|'%') expr
     |   STRING
     |   LITERAL
     |    '(' expr ')'
-    |   var;
+    |   var
+    | boolean;
 
 op:     '='
     |   '+='
@@ -37,8 +38,10 @@ relation:   '=='|
             '<'|
             '>';
 
+boolean: 'True' | 'False';
+
 atomiccond: (expr | expr relation expr) |
-            ('not' expr | 'not(' expr relation expr ')' ) | 'True' | 'False';
+            ('not' expr | 'not(' expr relation expr ')' ) | ;
 
 cond:  atomiccond ((' and ' | ' or ') atomiccond)*;
 
