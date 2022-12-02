@@ -3,7 +3,6 @@ from antlr4 import *
 from ExprLexer import ExprLexer
 from ExprParser import ExprParser
 
-
 def main(argv):
     input = FileStream(argv[1])
     lexer = ExprLexer(input)
