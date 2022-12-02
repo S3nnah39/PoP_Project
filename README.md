@@ -21,13 +21,10 @@ Follow intructions for antlr4 install here
 2. Add antlr-denter-1.2.jar to your CLASSPATH.
 3. Move antlr-denter-1.2.jar to your /usr/local/lib/ folder
 4. Add it to your classpath that you made in the previous step. For example, in my .zshrc file: export CLASSPATH=".:/usr/local/lib/antlr-4.9.2-complete.jar:/usr/local/lib/antlr-denter-1.2.jar:$CLASSPATH"
-5. Run antlr4 SimplePython.g4 in this directory
+5. Run antlr4 expr.g4 in this directory
 6. Run javac *.java to compile into java class files
-7. To parse and print tree on stdout, run: grun SimplePython startRule -tree <file>
-       
-       +To visualize in a gui, run: grun SimplePython startRule -gui <file>
-       +Replace <file> with the test_file.py or alternative to parse a file
- 8. Omit <file> to input on stdin, and enter control + D to end the input
+7. To parse and print tree on stdout, run: $ antlr4-parse <file> prog -tree
+8. Omit <file> to input on stdin, and enter control + D to end the input
 
 ## Optional: Demo video 
 https://www.youtube.com/watch?v=vfc42Pb5RA8
