@@ -11,6 +11,7 @@ expr:   expr ('/'|'%') expr
     |   '(' expr ')'
     |   var
     |   boolean
+    |   var (',' var)*
     |   'return' expr;
 
 op:     '='
@@ -62,6 +63,6 @@ funcname: var;
 
 parameter: (var (',' var)*)* ;
 
-funcbody: (body('\n')('\t'))* | body('\n');
+funcbody: (body('\n')('\t'))* ;// | body('\n');
 
-WS : [\r\n\t ]+ -> skip;
+WS : [\r ]+ -> skip;
