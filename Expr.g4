@@ -1,65 +1,67 @@
 grammar Expr;
 
+prog:   (body('\n')*('\t')*)*;
+body: (expr (comment)* | ass (comment)* | ite | comment | forstate | whilestate | funcstate);
+ass:    var op expr | var op var;
+expr:   expr ('/'|'%') expr
+    |   expr ('+'|'-') expr
+    |   INT
+    |   STRING
+    |   LITERAL
+    |   '(' expr ')'
+    |   var
+    |   boolean
+    |   'return' expr;
 
-// *** PARSER *** //
+op:     '='
+    |   '+='
+    |   '-='
+    |   '*='
+    |   '/=';
 
-prog: (statement)+ EOF;
+CHAR: [a-z] | [A-Z];
+INT:    [0-9]+;
+LITERAL: '"' STRING '"';
+STRING: (CHAR|INT) (CHAR | INT)*;
+var: STRING | CHAR;
+range: 'range(' (INT | INT ',' INT) ')';
 
-statement: expr
-         | VAR num_assign num_expr
-         | VAR ASSIGN expr
-         ;
+comment: single_line_comment | multi_line_comment;
 
-expr: '(' expr ')'
-    | STRING
-    | num_expr
-    ;
+single_line_comment: '#'('#' | STRING)*;
+multi_line_comment: '\'\'\''(STRING | '\n' | '\t')*'\'\'\'';
 
-// PEMDAS
-num_expr: '(' num_expr ')'
-        | num_expr (MUL|DIV|MOD) num_expr
-        | num_expr (ADD|SUB) num_expr
-        | num
-        ;
-num_assign: SUB_ASSIGN
-          | MUL_ASSIGN
-          | DIV_ASSIGN
-          | MOD_ASSIGN
-          ;
+ite:    ifstate elifstate* | ifstate elifstate* elsestate;
 
-num: (INT|FLOAT);
+relation:   '=='|
+            '>='|
+            '<='|
+            '<'|
+            '>';
 
+boolean: 'True' | 'False';
 
+atomiccond: (expr | expr relation expr) |
+            ('not' expr | 'not(' expr relation expr ')' ) | ;
 
-// *** LEXER *** //
+cond:  atomiccond ((' and ' | ' or ') atomiccond)*;
 
-// Arithmetic Operators
-MUL : '*' ;
-DIV : '/' ;
-MOD : '%' ;
-ADD : '+' ;
-SUB : '-' ;
+ifstate:    'if ' cond ':'(comment)*'\n\t' (body('\n')('\t'))*;
 
-// Assignment Operators
-ASSIGN     : '='  ;
-MUL_ASSIGN : '*=' ;
-DIV_ASSIGN : '/=' ;
-MOD_ASSIGN : '%=' ;
-ADD_ASSIGN : '+=' ;
-SUB_ASSIGN : '-=' ;
+elifstate:  'elif ' cond ':'(comment)*'\n\t' (body('\n')('\t'))*;
 
-// Variable definitions
-VAR : [_a-zA-Z][_a-zA-Z0-9]* ;
+elsestate: 'else ' cond ':'(comment)*'\n\t' (body('\n')('\t'))*;
 
+forstate: 'for ' var ' in ' (var | range) ':'(comment)*'\n\t' (body('\n')('\t'))*;
 
-// Miscellaneous
+whilestate: 'while ' cond ':'(comment)*'\n\t' (body('\n')('\t'))*;
+
+funcstate: 'def ' funcname '(' parameter '):'(comment)*'\n\t' funcbody;
+
+funcname: var;
+
+parameter: (var (',' var)*)* ;
+
+funcbody: (body('\n')('\t'))* | body('\n');
+
 WS : [\r\n\t ]+ -> skip;
-NEWLINE : '\r'? '\n' ;
-
-INT : [0-9]+ ;
-FLOAT : '-'? INT '.' INT ;
-
-STRING: '"' ~["\r\n]* '"';
-
-PAREN_OPEN: '(';
-PAREN_CLOSE: ')';
