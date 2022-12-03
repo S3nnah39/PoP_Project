@@ -24,7 +24,7 @@ Follow intructions for antlr4 install here
 5. Run antlr4 expr.g4 in this directory
 6. Run javac *.java to compile into java class files
 7. To parse and print tree on stdout, run: $ antlr4-parse <file> prog -tree
-8. Omit <file> to input on stdin, and enter control + D to end the input
+8. Omit <file> to input on stdin, and enter control + D to end the input (use control + Z on Windows).
 
 ## Optional: Demo video 
 https://www.youtube.com/watch?v=vfc42Pb5RA8
