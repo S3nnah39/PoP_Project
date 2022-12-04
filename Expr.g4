@@ -1,16 +1,18 @@
 grammar Expr;
 
 prog:   (body('\n')*('\t')*)*;
-body: (expr (comment)* | ass (comment)* | ite | comment | forstate | whilestate);
-ass:    var op expr;
+body: (expr (comment)* | ass (comment)* | ite | comment | forstate | whilestate | funcstate);
+ass:    var op expr | var op var;
 expr:   expr ('/'|'%') expr
-    |    expr ('+'|'-') expr
-    |    INT
+    |   expr ('+'|'-') expr
+    |   INT
     |   STRING
     |   LITERAL
-    |    '(' expr ')'
+    |   '(' expr ')'
     |   var
-    | boolean;
+    |   boolean
+    |   var (',' var)*
+    |   'return' expr;
 
 op:     '='
     |   '+='
@@ -54,3 +56,13 @@ elsestate: 'else ' cond ':'(comment)*'\n\t' (body('\n')('\t'))*;
 forstate: 'for ' var ' in ' (var | range) ':'(comment)*'\n\t' (body('\n')('\t'))*;
 
 whilestate: 'while ' cond ':'(comment)*'\n\t' (body('\n')('\t'))*;
+
+funcstate: 'def ' funcname '(' parameter '):'(comment)*'\n\t' funcbody;
+
+funcname: var;
+
+parameter: (var (',' var)*)* ;
+
+funcbody: (body('\n')('\t'))* ;// | body('\n');
+
+WS : [\r ]+ -> skip;
