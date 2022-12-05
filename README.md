@@ -23,7 +23,8 @@ Follow intructions for antlr4 install here
 4. Add it to your classpath that you made in the previous step. For example, in my .zshrc file: export CLASSPATH=".:/usr/local/lib/antlr-4.9.2-complete.jar:/usr/local/lib/antlr-denter-1.2.jar:$CLASSPATH"
 5. Run antlr4 expr.g4 in this directory
 6. Run javac *.java to compile into java class files
-7. To parse and print tree on stdout, run: $ antlr4-parse <file> prog -tree
+7. To parse and print tree on stdout, run: $ antlr4-parse <file> prog -tree 
+                        *For visualization run: $ antlr4-parse <file> prog -gui
 8. Omit <file> to input on stdin, and enter control + D to end the input (use control + Z on Windows).
 
 ## Optional: Demo video 
