@@ -23,7 +23,7 @@ op:     '='
 CHAR: [a-z] | [A-Z];
 INT:    [0-9]+;
 LITERAL: '"' STRING '"';
-STRING: (CHAR|INT) (CHAR | INT)*;
+STRING: (CHAR|INT) (CHAR | INT | ' ')*;
 var: STRING | CHAR;
 range: 'range(' (INT | INT ',' INT) '):';
 
