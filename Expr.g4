@@ -25,7 +25,7 @@ INT:    [0-9]+;
 LITERAL: '"' STRING '"';
 STRING: (CHAR|INT) (CHAR | INT)*;
 var: STRING | CHAR;
-range: 'range(' (INT | INT ',' INT) ')';
+range: 'range(' (INT | INT ',' INT) '):';
 
 comment: single_line_comment | multi_line_comment;
 
@@ -53,7 +53,7 @@ elifstate:  'elif ' cond ':'(comment)*'\n\t' (body('\n')('\t'))*;
 
 elsestate: 'else ' cond ':'(comment)*'\n\t' (body('\n')('\t'))*;
 
-forstate: 'for ' var ' in ' (var | range) ':'(comment)*'\n\t' (body('\n')('\t'))*;
+forstate: 'for ' var ' in ' (var ':' | range) (comment)*'\n\t' (body('\n')('\t'))*;
 
 whilestate: 'while ' cond ':'(comment)*'\n\t' (body('\n')('\t'))*;
 
