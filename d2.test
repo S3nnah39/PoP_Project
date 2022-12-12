@@ -1,1 +1,6 @@
-var = 5 * 2 + 9 % 12
+if 5== 5:
+    var3 = 1
+elif 4==4:
+    var3 =2
+else:
+    var3= 3

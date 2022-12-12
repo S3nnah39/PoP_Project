@@ -2,12 +2,12 @@ grammar Expr;
 
 prog:   ((expr | ass | ite)('\n')*('\t')*)*;
 ass:    var op expr;
-expr:   expr ('/'|'%') expr
-    |    expr ('+'|'-') expr
-    |    INT
+expr:   expr ('*'|'/'|'%') expr
+    |   expr ('+'|'-') expr
+    |   INT
     |   STRING
     |   LITERAL
-    |    '(' expr ')'
+    |   '(' expr ')'
     |   var;
 
 op:     '='
@@ -21,6 +21,8 @@ INT:    [0-9]+;
 LITERAL: '"' STRING '"';
 STRING: (CHAR|INT) (CHAR | INT)*;
 var: STRING;
+INDENT: ('\t'|'    ');
+WS : [\r\n\t ]+ -> skip;
 
 ite:    ifstate elifstate* | ifstate elifstate* elsestate;
 
@@ -35,8 +37,8 @@ atomiccond: (expr | expr relation expr) |
 
 cond:  atomiccond (('and' | 'or') atomiccond)*;
 
-ifstate:    'if ' cond ':\n\t' ((expr | ass | ite)('\n')('\t'))*;
+ifstate:    'if ' cond ':\n' INDENT ((expr | ass | ite)('\n')(INDENT))*;
 
-elifstate:  'elif' cond ':\n\t' ((expr | ass | ite)('\n')('\t'))*;
+elifstate:  'elif ' cond ':\n' INDENT ((expr | ass | ite)('\n')(INDENT))*;
 
-elsestate: 'else' cond ':\n\t' ((expr | ass | ite)('\n')('\t'))*;
+elsestate: 'else' cond ':\n' INDENT ((expr | ass | ite)('\n')(INDENT))*;
