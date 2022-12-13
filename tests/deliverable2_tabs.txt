@@ -1,0 +1,61 @@
+x = 3
+y = 2
+z = 1
+
+x += 1
+x -= 1
+x *= 1
+x /= 1
+x %= 1
+
+x += y
+x -= y
+x *= y
+x /= y
+x %= y
+
+x += 1 + y
+x -= 1 - y
+x *= 1 * y
+x /= 1 / y
+x %= 1 % y
+
+x = y + 1 - 1 * 1 / 1 % 1 + z - z * z / z % z
+
+if 1 < 1:
+	x += 1
+if 1 <= 1:
+	x += 1
+if 1 > 1:
+	x += 1
+if 1 >= 1:
+	x += 1
+if 1 == 1:
+	x += 1
+if 1 != 1:
+	x += 1
+if True and True:
+	x += 1
+if True or True:
+	x += 1
+if True or not True:
+	x += 1
+	
+if True and x < 2 or False and True or y > z + 7:
+	x += 1
+if x * 2 < y - 5 * z:
+	x += 1
+
+if x > 2:
+	if x * 2 <= 10 - 5:
+		z = 7 + x
+	elif True and True or not False:
+		if True:
+			z = 3 + y
+	x = 0
+elif y > 1 or z * 3 == 5:
+	y = 0
+else:
+	z = 0
+	
+
