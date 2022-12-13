@@ -1,0 +1,10 @@
+#Deliverable 4
+
+x = 3
+y = 2
+a = myFunc(x,y)
+
+
+def myFunc(x, y):
+	w = x * y
+	return w

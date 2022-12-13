@@ -1,11 +1,12 @@
 grammar Expr;
 
 prog:   (body('\n')*('\t')*)*;
-body: (expr (comment)* | ass (comment)* | ite | comment | forstate | whilestate | funcstate);
+body: ( ass (comment)* | expr (comment)* | ite | comment | forstate | whilestate | funcstate);
 ass:    var op expr | var op var;
-expr:   expr ('/'|'%') expr
+expr:   expr ('*'|'/'|'%') expr
     |   expr ('+'|'-') expr
     |   INT
+    |   FLOAT
     |   STRING
     |   LITERAL
     |   '(' expr ')'
@@ -20,10 +21,12 @@ op:     '='
     |   '*='
     |   '/=';
 
+SPECIAL: (' ' | '!' | '$' | '%' | '&' | '’' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '^' | '_' | '`' | '{' | '}' );
 CHAR: [a-z] | [A-Z];
 INT:    [0-9]+;
-LITERAL: '"' STRING '"';
-STRING: (CHAR|INT) (CHAR | INT | ' ')*;
+FLOAT: INT'.'INT;
+LITERAL: ('"' STRING '"') | ('"' '"');
+STRING: (CHAR | INT | SPECIAL) (CHAR | INT | SPECIAL)*;
 var: STRING | CHAR;
 range: 'range(' (INT | INT ',' INT) '):';
 
