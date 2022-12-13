@@ -34,7 +34,7 @@ range: 'range(' (INT | INT ',' INT) '):';
 comment: single_line_comment | multi_line_comment;
 
 single_line_comment: '#'('#' | STRING)*;
-multi_line_comment: '\'\'\''(STRING | '\n' | INDENT)*'\'\'\'';
+multi_line_comment: ('\'\'\''(STRING | '\n' | INDENT)*'\'\'\'') | ('"""'(STRING | '\n' | INDENT | SPECIAL)*'"""');
 
 ite:    ifstate elifstate* | ifstate elifstate* elsestate;
 
