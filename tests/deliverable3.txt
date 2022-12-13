@@ -1,0 +1,11 @@
+#Deliverable 3
+
+idx = 0
+
+#this is a comment
+
+while idx < 10:
+	idx *= 2
+
+for i in range(5):
+	idx += 1
